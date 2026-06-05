@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_move_form_inherit" model="ir.ui.view" >
+        <field name="name">account.invoice.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+
+            <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='price_unit']" position="after">
+                <field name="dist_margin" column_invisible="parent.move_type != 'out_invoice'" />
+                <field name="booker_margin" column_invisible="parent.move_type != 'out_invoice'" />
+                <field name="trade_Offer" column_invisible="parent.move_type != 'out_invoice'" />
+            </xpath>
+
+            <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='price_unit']"
+                   position="replace">
+
+                <field name="price_unit"
+                       column_invisible="parent.move_type == 'out_invoice'"/>
+
+                <field name="trade_price"
+                       column_invisible="parent.move_type != 'out_invoice'"/>
+
+            </xpath>
+
+        </field>
+
+    </record>
+
+</odoo>

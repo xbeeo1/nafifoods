@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_booker_margin,booker.margin,model_booker_margin,base.group_user,1,1,1,1
+access_distributor_margin,distributor.margin,model_distributor_margin,base.group_user,1,1,1,1
+access_trade_offer,trade.offer,model_trade_offer,base.group_user,1,1,1,1

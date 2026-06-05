@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_trade_offer_list" model="ir.ui.view">
+            <field name="name">trade.offer.list</field>
+            <field name="model">trade.offer</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="fixed_per"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="view_trade_offer_form" model="ir.ui.view">
+            <field name="name">trade.offer.form</field>
+            <field name="model">trade.offer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+
+                        <group>
+                            <field name="fixed_per"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_trade_offer" model="ir.actions.act_window">
+            <field name="name">Trade Offer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">trade.offer</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create Your First Trade Offer...!
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_action_trade_offer"
+                  name="Trade Offer"
+                  parent="sale.menu_sale_config"
+                  action="action_trade_offer"
+                  sequence="26"/>
+
+    </data>
+</odoo>
