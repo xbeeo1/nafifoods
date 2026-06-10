@@ -23,6 +23,9 @@
         'views/booker_margin_views.xml',
         'views/distributor_margin_views.xml',
         'views/trade_offer_views.xml',
+        'views/product_template_views.xml',
+        'views/product_variant_views.xml',
+        'views/purchase_order_views.xml',
 
     ],
 

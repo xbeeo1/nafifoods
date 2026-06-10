@@ -34,7 +34,7 @@ class AccountMoveLine(models.Model):
             if line.move_id.move_type == 'out_invoice':
                 line.trade_price = line.product_id.list_price or 0.0
 
-    @api.depends('trade_price', )
+    @api.depends('trade_price')
     def _compute_all_margins_and_price(self):
 
         dist_obj = self.env['distributor.margin'].search([], limit=1)
@@ -50,21 +50,21 @@ class AccountMoveLine(models.Model):
             trade_price = line.trade_price or 0.0
 
             # ---------------- Dist Margin ----------------
-            if dist_obj and dist_obj.fixed_per and trade_price:
+            if dist_obj and dist_obj.fixed_per and trade_price and not line.product_id.is_charges:
                 dis_dist = trade_price * (dist_obj.fixed_per / 100)
                 line.dist_margin = trade_price - dis_dist
             else:
                 line.dist_margin = 0.0  # fallback safe value
 
             # ---------------- Booker Margin ----------------
-            if book_obj and book_obj.fixed_per and line.dist_margin:
+            if book_obj and book_obj.fixed_per and line.dist_margin and not line.product_id.is_charges:
                 dis_book = line.dist_margin * (book_obj.fixed_per / 100)
                 line.booker_margin = line.dist_margin - dis_book
             else:
                 line.booker_margin = 0.0
 
             # ---------------- Trade Offer ----------------
-            if trade_obj and trade_obj.fixed_per and line.booker_margin:
+            if trade_obj and trade_obj.fixed_per and line.booker_margin and not line.product_id.is_charges:
                 discount = line.booker_margin * (trade_obj.fixed_per / 100)
                 line.trade_Offer = line.booker_margin - discount
             else:

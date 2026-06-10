@@ -19,6 +19,8 @@
     "data": [
         'report/nafi_sale_order_report_template.xml',
         'report/nafi_invoice_report_template.xml',
+        'report/purchase_order_template_inherit.xml',
+        'report/report_invoice_document_template.xml',
         'report/report.xml',
     ],
 

@@ -25,6 +25,10 @@
 
             </xpath>
 
+            <xpath expr="//field[@name='invoice_line_ids']/list//field[@name='quantity']" position="attributes">
+                <attribute name="sum">Total</attribute>
+            </xpath>
+
         </field>
 
     </record>

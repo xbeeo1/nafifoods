@@ -6,6 +6,5 @@ from . import sale_order_line
 from . import booker_margin
 from . import distributor_margin
 from . import trade_offer
-
-
-
+from . import product_template
+from . import product_variant

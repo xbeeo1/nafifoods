@@ -1,0 +1,30 @@
+<odoo>
+    <template id="report_invoice_document_inherit_total_qty"
+              inherit_id="account.report_invoice_document">
+
+        <xpath expr="//div[@name='comment']" position="after">
+
+            <div>
+                <p>
+                    <strong>Total Quantity:</strong>
+                    <strong>
+
+                        <t t-set="current_quantity" t-value="0"/>
+                        <t t-set="lines"
+                           t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+
+                        <t t-foreach="lines" t-as="line">
+                            <t t-set="current_quantity"
+                               t-value="current_quantity + line.quantity"/>
+                        </t>
+
+                        <span t-esc="current_quantity"/>
+
+                    </strong>
+                </p>
+            </div>
+
+        </xpath>
+
+    </template>
+</odoo>
